@@ -22,6 +22,12 @@ from db.audit import get_history, init_db
 
 load_dotenv()
 
+_DEFAULT_ORIGINS = "http://localhost:3000,http://localhost:5173,http://localhost:8080,http://127.0.0.1:8080"
+
+def _get_allowed_origins() -> list[str]:
+    raw = os.getenv("ALLOWED_ORIGINS", _DEFAULT_ORIGINS)
+    return [o.strip() for o in raw.split(",") if o.strip()]
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -38,7 +44,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173", "http://localhost:8080", "http://127.0.0.1:8080"],
+    allow_origins=_get_allowed_origins(),
     allow_credentials=False,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type", "Accept"],

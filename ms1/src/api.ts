@@ -1,4 +1,6 @@
-export const API_BASE_URL = "/api";
+// In production (Vercel), set VITE_API_URL to your Render backend URL.
+// In local dev, the Vite proxy forwards /api → http://localhost:8000
+export const API_BASE_URL = import.meta.env.VITE_API_URL ?? "/api";
 
 export interface MessageResponse {
   response: string;
