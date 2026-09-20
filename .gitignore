@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+*.egg-info/
+
+# Environment
+.env
+*.db
+
+# Node / Bun
+ms1/node_modules/
+ms1/.lovable/
+
+# Build outputs
+ms1/dist/
+ms1/.output/
+ms1/.nitro/
+
+# Vite / TanStack cache
+ms1/.vite/
+
+# OS
+.DS_Store
+Thumbs.db
